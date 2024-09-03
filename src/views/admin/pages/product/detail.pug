@@ -1,0 +1,36 @@
+extends ../../layout/default.pug
+
+block main 
+    h1 #{pageTitle}
+    - if(product.title)
+        div 
+            h2 #{product.title}
+    
+    - if(product.description)
+        div 
+            p Description: <b>#{product.description}</b>
+    
+    - if(product.discountPercentage)
+        div 
+            p DiscountPercentage: <b>#{product.discountPercentage}</b> %
+    
+    - if(product.price)
+        div 
+            p Price: <b>#{product.price} $</b> 
+    - if(product.status)
+        span Status:
+            - if(product.status == "active")
+                    span(class="badge bg-success") Active
+            - else 
+                    span(class="badge bg-danger") Inactive
+    - if(product.thumbnail)
+        div 
+            img( class="image-preview-img" src=product.thumbnail  alt="product" )
+    - if(product.position)
+        div 
+            p Position: <b>#{product.position}</b>
+    
+    a(  
+        href =`${prefixAdmin}/product/edit/${product.id}`
+        class="btn btn-warning ms-1"
+    ) Edit 

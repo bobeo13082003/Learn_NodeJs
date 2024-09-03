@@ -1,0 +1,120 @@
+extends ../../layout/default.pug
+include ../../mixins/alert.pug
+
+block main 
+    - if(messages.success)
+        +alert-success(messages.success, 5000)
+    h1(class="mb-3") #{pageTitle}
+
+    form(
+        action=`${prefixAdmin}/product/edit/${product.id}?_method=PATCH`
+        method="post"
+        id="form-edit-product"
+        enctype="multipart/form-data"
+    ) 
+        div(class="form-group")     
+            label(for="title") Title        
+            input(
+                type="text"
+                name="title"
+                id="title"
+                class="form-control"
+                value=product.title
+            )
+        - if(messages.error)
+            +alert-error(messages.error, 5000)
+
+        div(class="form-group")     
+            label(for="description") Description        
+            textarea(
+                type="text"
+                name="description"
+                id="description"
+                class="form-control"
+                row=8
+
+            ) #{product.description}
+        div(class="form-group")     
+            label(for="price") Price        
+            input(
+                type="number"
+                name="price"
+                id="price"
+                class="form-control"
+                min=0
+                value=product.price
+            )
+        div(class="form-group")     
+            label(for="discountPercentage") DiscountPercentage %       
+            input(
+                type="number"
+                name="discountPercentage"
+                id="discountPercentage"
+                class="form-control"
+                min=0
+                step="any"
+                value=product.discountPercentage
+
+            )
+        div(class="form-group")     
+            label(for="stock") Stock        
+            input(
+                type="number"
+                name="stock"
+                id="stock"
+                class="form-control"
+                min=0
+                value=product.stock
+
+            )
+        div(class="form-group" image-upload)     
+            label(for="thumbnail") Avatar        
+            input(
+                type="file"
+                name="thumbnail"
+                id="thumbnail"
+                class="form-control"
+                accept="image/*"
+                image-upload-input
+            ) 
+            img(
+                src=product.thumbnail 
+                class="image-preview-img" 
+                alt="ImageUpload" 
+                image-preview)
+            <span close-preview><i class="bi bi-x-circle ms-3"></i></span>
+        div(class="form-group")     
+            label(for="position") Position        
+            input(
+                type="number"
+                name="position"
+                id="position"
+                class="form-control"
+                min = 0
+                placeholder="Auto Increase"
+                value=product.position
+            )
+        div(class="form-group form-check form-check-inline mt-3")     
+            input(
+                type="radio"
+                name="status"
+                id="statusActive"
+                value ="active"
+                class="form-check-input"
+                checked = (product.status == "active" ? true : false) 
+            ) 
+            label(for="status") Active        
+        div(class="form-group form-check form-check-inline mt-3")     
+            input(
+                type="radio"
+                name="status"
+                id="statusInactive"
+                value ="inactive"
+                class="form-check-input"
+                checked = (product.status == "inactive" ? true : false) 
+            ) 
+            label(for="status") Inactive
+        div(class="form-group")
+            button(class="btn btn-primary mt-3" type="submit") Save
+    
+    script(src="/admin/js/script.js") 

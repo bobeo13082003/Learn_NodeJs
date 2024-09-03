@@ -1,0 +1,15 @@
+mixin search(search)
+    form(id="form-search")
+        .input-group 
+            input(
+                type="text"
+                placeholder="Enter Title"
+                name="title"
+                class="form-control"
+                value=search
+            )
+            
+            button(
+                class="btn btn-success"
+                type="submit"
+            ) Search

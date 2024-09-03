@@ -1,0 +1,111 @@
+extends ../../layout/default.pug
+include ../../mixins/alert.pug
+
+block main 
+    h1(class="mb-3") #{pageTitle}
+
+    form(
+        action=`${prefixAdmin}/product/create`
+        method="post"
+        id="form-create-product"
+        enctype="multipart/form-data"
+    ) 
+        div(class="form-group")     
+            label(for="title") Title        
+            input(
+                type="text"
+                name="title"
+                id="title"
+                class="form-control"
+            )
+        - if(messages.error)
+            +alert-error(messages.error, 5000)
+
+        div(class="form-group")     
+            label(for="description") Description        
+            textarea(
+                type="text"
+                name="description"
+                id="description"
+                class="form-control"
+                row=8
+            )
+        div(class="form-group")     
+            label(for="price") Price        
+            input(
+                type="number"
+                name="price"
+                id="price"
+                class="form-control"
+                min=0
+                value=0
+            )
+        div(class="form-group")     
+            label(for="discountPercentage") DiscountPercentage %       
+            input(
+                type="number"
+                name="discountPercentage"
+                id="discountPercentage"
+                class="form-control"
+                min=0
+                value=0
+            )
+        div(class="form-group")     
+            label(for="stock") Stock        
+            input(
+                type="number"
+                name="stock"
+                id="stock"
+                class="form-control"
+                min=0
+                value=0
+            )
+        div(class="form-group" image-upload)     
+            label(for="thumbnail") Avatar        
+            input(
+                type="file"
+                name="thumbnail"
+                id="thumbnail"
+                class="form-control"
+                accept="image/*"
+                image-upload-input
+            ) 
+            img(
+                src="" 
+                class="image-preview-img" 
+                alt="ImageUpload" 
+                image-preview)
+            <span close-preview><i class="bi bi-x-circle ms-3"></i></span>
+        div(class="form-group")     
+            label(for="position") Position        
+            input(
+                type="number"
+                name="position"
+                id="position"
+                class="form-control"
+                min = 0
+                placeholder="Auto Increase"
+            )
+        div(class="form-group form-check form-check-inline mt-3")     
+            input(
+                type="radio"
+                name="status"
+                id="statusActive"
+                value ="active"
+                class="form-check-input"
+                checked
+            ) 
+            label(for="status") Active        
+        div(class="form-group form-check form-check-inline mt-3")     
+            input(
+                type="radio"
+                name="status"
+                id="statusInactive"
+                value ="inactive"
+                class="form-check-input"
+            ) 
+            label(for="status") Inactive
+        div(class="form-group")
+            button(class="btn btn-primary mt-3" type="submit") Create
+    
+    script(src="/admin/js/script.js") 

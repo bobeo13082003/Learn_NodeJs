@@ -1,0 +1,125 @@
+extends ../../layout/default.pug
+include ../../mixins/filterStatus.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/changeMulti.pug
+include ../../mixins/alert.pug
+block main 
+    - if (messages.success)
+       +alert-success(messages.success, 5000)
+    .title 
+        h1 List Products
+
+    .card.mb-3 
+        .card-header Filter Status 
+            .card-body 
+                .row 
+                    .col-6 
+                        +filter-status(filterStatus)
+                    .col-6  
+                        +search(search)
+                            
+    .card.mb-3 
+        .card-header Update State All Products    
+            .card-body 
+                .row 
+                    .col-8
+                        +change-multi(`${prefixAdmin}/product/change-multi?_method=PATCH`)
+                    .col-4 
+                        a(
+                            href=`${prefixAdmin}/product/create`
+                            class ="btn btn-outline-success"
+                        ) + Add New Product
+
+
+    table(class="table table-hover" checkbox-multi) 
+        thead       
+            tr  
+                th
+                    input(
+                        type="checkbox"
+                        name="checkall"
+                    )              
+                th NO
+                th Image 
+                th Title
+                th Price
+                th Position
+                th Status
+                th Action 
+        tbody 
+            each item, index in products
+                tr  
+                    td 
+                        input(
+                            type="checkbox"
+                            value=item.id
+                            name="id"
+                        )
+                    td #{index + 1}
+                    td 
+                        img(
+                            src=item.thumbnail 
+                            width="100px" 
+                            height="auto" 
+                            alt="product"
+                        )
+                    td #{item.title}
+                    td #{item.price}$
+                    td 
+                        input(
+                            type="number"
+                            value=item.position 
+                            name="position"
+                            min=1
+                        )
+                    td
+                        if(item.status == "active")
+                            a(
+                                href="javascript:;" 
+                                class="badge bg-success"
+                                data-status = item.status 
+                                data-id = item.id
+                                button-change-status
+                            ) Active
+                        else   
+                            a(
+                                href="javascript:;" 
+                                class="badge bg-danger"
+                                data-status = item.status 
+                                data-id = item.id
+                                button-change-status
+                            ) Inactive
+                            
+                    td 
+                        a(  
+                            href =`${prefixAdmin}/product/detail/${item.id}`
+                            class="btn btn-secondary"
+                        ) Detail 
+                        a(  
+                            href =`${prefixAdmin}/product/edit/${item.id}`
+                            class="btn btn-warning ms-1"
+                        ) Edit 
+                        button(
+                            class="btn btn-danger ms-1"
+                            data-delete=item.id 
+                            button-delete
+                        ) Delete 
+
+    +pagination(pagination)
+
+    form(
+        id="form-change-status"
+        action=""
+        method="POST"
+        data-path=`${prefixAdmin}/product/change-status`
+    )
+
+    form(
+        action=""
+        method="POST"
+        id="form-delete"
+        data-path=`${prefixAdmin}/product/delete`    
+    ) 
+    
+    script(src="/admin/js/product.js") 

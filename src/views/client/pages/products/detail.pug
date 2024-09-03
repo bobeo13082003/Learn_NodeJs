@@ -1,0 +1,31 @@
+extends ../../layout/default.pug
+
+block main 
+    .container
+        .row 
+            .col-12 
+                h1(class="mb-3") #{pageTitle}
+                - if(product.title)
+                    div(class="mb-3")
+                        h2 #{product.title}
+                
+                - if(product.description)
+                    div(class="mb-3")
+                        p Description: <b>#{product.description}</b>
+                
+                - if(product.discountPercentage)
+                    div(class="mb-3") 
+                        p DiscountPercentage: <b>#{product.discountPercentage}</b> %
+                - if(product.price)
+                    div(class="mb-3") 
+                        p OldPrice: <b class="oldprice">#{product.price} $</b> 
+                - if(product.newPrice)
+                    div(class="mb-3") 
+                        p NewPrice: <b>#{product.newPrice} $</b>
+                - if(product.stock)
+                    div(class="mb-3") 
+                        p Stock: <b>#{product.stock}</b>
+                - if(product.thumbnail)
+                    div(class="mb-3") 
+                        img( class="image-preview-img" src=product.thumbnail  alt="product" )
+                

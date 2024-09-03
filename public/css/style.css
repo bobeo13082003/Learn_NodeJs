@@ -1,0 +1,103 @@
+.header {
+    border-bottom: solid rgba(0, 0, 0, 0.25);
+    padding: 10px 0;
+}
+
+.header .inner-logo img {
+    width: 30%;
+}
+
+.header .col-9.menu {
+    display: flex;
+    align-items: center;
+}
+
+.header .menu .inner-menu ul {
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.header .inner-menu {
+    align-items: center;
+}
+
+.header .inner-menu a {
+    text-decoration: none;
+}
+
+.header .inner-menu ul li {
+    list-style: none;
+    font-weight: 700;
+
+}
+
+.footer {
+    background-color: rgb(36, 34, 34);
+    padding: 10px;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+}
+
+.box-head .inner-title {
+    color: green;
+    padding: 20px 0;
+
+}
+
+.product-item {
+    border: solid;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.product-item .inner-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-item .inner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-item .inner-content {
+    margin: 10px 10px;
+
+}
+
+.product-item .inner-content .inner-title {
+    margin-left: 10px;
+}
+
+.product-item .inner-content .inner-price-new {
+    color: green;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.product-item .inner-content .inner-price-old {
+    text-decoration: line-through;
+    color: red;
+    font-weight: 600;
+    font-size: 20px;
+
+}
+
+.product-item .inner-content .inner-discount {
+    width: fit-content;
+    border-radius: 10px;
+    background-color: red;
+    text-align: center;
+    color: white;
+
+}
+
+.oldprice {
+    color: red;
+    text-decoration: line-through;
+}

@@ -1,0 +1,23 @@
+mixin change-multi(path) 
+    form(
+        action=path 
+        method="POST"
+        form-change-multi
+        )                    
+        .d-flex.align-items-start.gap-2
+            .input-group 
+                select(name="type" class="form-select")
+                    option(disabled selected) --- Choose Option --- 
+                    option(value="active") Active       
+                    option(value="inactive") Inactive 
+                    option(value="delete-all") Delete All 
+                    option(value="change-position") Change Position  
+            .input-group 
+                input(
+                    hidden
+                    type="text"
+                    name="ids"
+                    value=""
+                    class="form-control"
+                )
+                button(type="submit" class="btn btn-primary") Update

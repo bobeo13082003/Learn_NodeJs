@@ -1,0 +1,14 @@
+mixin alert-success(message, time) 
+    .message.success
+        div(
+            class="alert alert-success"
+            alert-success
+            data-time=time
+        ) #{messages.success} <span close-alert><i class="bi bi-x-circle ms-3"></i></span>
+mixin alert-error(message, time) 
+    .message.success
+        div(
+            class="alert alert-danger"
+            alert-success
+            data-time=time
+        ) #{messages.error} <span close-alert><i class="bi bi-x-circle ms-3"></i></span>
