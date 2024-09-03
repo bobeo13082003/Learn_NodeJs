@@ -8,6 +8,10 @@ const flash = require('express-flash')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const path = require('path');
+
+
+
+
 //connet db
 const database = require('./config/database');
 database.connect();
