@@ -5,7 +5,7 @@ const controller = require('../../controller/admin/product.controller')
 const validate = require('../../validate/admin/product.validate')
 const upload = multer()
 
-const uploadClould = require('../../middlewares/admin/uploadClould.middleware')
+const uploadCloud = require('../../middlewares/admin/uploadCloud.middleware')
 
 
 routes.get('/', controller.product);
@@ -20,7 +20,7 @@ routes.get('/create', controller.create)
 
 routes.post('/create',
     upload.single('thumbnail'),
-    uploadClould.upload,
+    uploadCloud.upload,
     validate.createPost,
     controller.postCreateProduct
 )
